@@ -100,3 +100,7 @@ exports.adminLogin = async (req, res) => {
     return exception("", statusCodeEnum.internalServerError, res, error);
   }
 };
+
+exports.adminLogout = async (req, res) => {
+  await res.clearCookie("admin_access_token").send("Logout Successfully.");
+};

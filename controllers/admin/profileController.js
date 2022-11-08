@@ -114,7 +114,7 @@ const getBasicDetails = async (req, res) => {
     const getBasicDetails = await UserProfile.findOne()
       .select("firstName lastName fullName email birthdate address aboutMe")
       .lean();
-
+      
     if (getBasicDetails) {
       success("Success", getBasicDetails, statusCodeEnum.success, res);
     } else {
