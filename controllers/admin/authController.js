@@ -1,5 +1,4 @@
 const adminModel = require("../../models/adminModel");
-const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
 const { statusCodeEnum } = require("../../utils/commonFun");
 const {
@@ -9,7 +8,6 @@ const {
   successAuth,
 } = require("../../models/apiResponses/apiReponseModel");
 const { checkPassword } = require("../../utils/passwordCheck");
-const { JWTSecret } = require("../../config/index");
 const { signAccessToken } = require("../../middlewares/jwt");
 
 exports.adminRegister = async (req, res) => {
@@ -73,6 +71,7 @@ exports.adminLogin = async (req, res) => {
         process.env.NODE_ENV === "development"
           ? {
               httpOnly: true,
+              maxAge: 24 * 60 * 60 * 1000,
             }
           : {
               // httpOnly: true,
